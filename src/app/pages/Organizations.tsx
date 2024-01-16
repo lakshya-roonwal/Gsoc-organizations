@@ -15,45 +15,9 @@ import {
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import OrgCard from "@/components/organizations/OrgCard";
+import OrgData from '@/data/organizations.json'
 
 export default function Organizations() {
-    const OrgData = [
-      {
-        name: " 52\u00b0North Initiative for Geospatial Open Source Software GmbH ",
-        description:
-          " 52\u00b0North works on innovative ideas and technologies in geoinformatics. ",
-        imageUrl:
-          "https://summerofcode.withgoogle.com/media/archive/4959751460880384.png",
-        orgUrl:
-          "https://summerofcode.withgoogle.com/archive/2017/organizations/4959751460880384",
-        years: ["2017","2018","2023"],
-        technologies: [
-          "javascript",
-          " java",
-          " web services",
-          " ogc standards",
-          " web",
-        ],
-      },
-      {
-        name: " AboutCode ",
-        description:
-          " Open Source for Open Source: software license, origin and packages discovery ",
-        imageUrl:
-          "https://summerofcode.withgoogle.com/media/archive/6448304984424448.png",
-        orgUrl:
-          "https://summerofcode.withgoogle.com/archive/2017/organizations/6448304984424448",
-        years: ["2017","2016"],
-        technologies: [
-          "python",
-          " javascript",
-          " c/c++",
-          " shell script",
-          " static analysis",
-        ],
-      },
-    ];
-
   return (
     <div className="min-h-screen bg-gray-100 p-8">
       <div className="max-w-7xl mx-auto">
