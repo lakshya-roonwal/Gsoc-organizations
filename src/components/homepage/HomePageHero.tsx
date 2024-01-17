@@ -3,7 +3,7 @@ import { Button } from "../ui/button";
 
 const HomePageHero = () => {
   return (
-    <div className="h-screen bg-black text-white overflow-hidden">
+    <div className="h-screen bg-white ">
       <div
         style={{
           height: "150px",
@@ -19,23 +19,28 @@ const HomePageHero = () => {
         }}
         className=""
       ></div>
-      <div className="flex flex-col items-center justify-start h-full py-28 ">
-        <h1 className="text-6xl font-bold my-4">
-          Gsoc{" "}
+      <div className="flex flex-col items-center justify-start h-full py-20 md:py-24 ">
+        <h1 className="text-5xl md:text-3xl font-bold text-center tracking-tighter sm:text-5xl xl:text-6xl/none">
+          All Google Summer of Code{" "}
           <span className="font-extrabold text-transparent  bg-clip-text bg-gradient-to-r from-[#20A4F3] to-[#182B3A]">
             Organizations
           </span>
         </h1>
-        <p className="text-center">
+        <p className="text-center line-clamp-2 my-2">
           A place where you can watch and compare all the Organizations <br />{" "}
           which participated in GSOC
         </p>
         <Button
           variant={"default"}
-          className="bg-blue-500 hover:bg-blue-800 my-4"
+          className="my-4 "
           asChild
         >
-          <Link href={"/organizations"}>All Organizations</Link>
+          <Link
+            className=""
+            href="/organizations"
+          >
+            Explore Organizations
+          </Link>
         </Button>
       </div>
     </div>
