@@ -15,7 +15,7 @@ const OrgCard: FC<OrganizationCardType> = ({
   imageUrl,
   years,
   technologies,
-  orgUrl,
+  topics,
 }: OrganizationCardType) => {
   return (
     <Card className="w-full">

@@ -1,3 +1,4 @@
+"use client"
 import {
   SelectValue,
   SelectTrigger,
@@ -6,20 +7,66 @@ import {
   Select,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import {
-  CardHeader,
-  CardContent,
-  CardFooter,
-  Card,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import OrgCard from "@/components/organizations/OrgCard";
 import OrgData from '@/data/organizations.json'
 import { Button } from "@/components/ui/button";
-import { LayoutGridIcon, ListIcon } from "lucide-react";
+import { useEffect, useState } from "react";
+import { OrganizationCardType } from "@/types/types";
 
 export default function Organizations() {
+
+  const [organizations, setOrganizations] = useState<OrganizationCardType[]>(OrgData)
+    const [filteredOrganizations, setFilteredOrganizations] =
+      useState<OrganizationCardType[]>(organizations);
+    const [searchTerm, setSearchTerm] = useState<string>("");
+    const [selectedTechnology, setSelectedTechnology] = useState<string | null>(
+      null
+    );
+
+    // Function to filter organizations based on search term and selected technology
+    const filterOrganizations = () => {
+      let filteredOrgs = OrgData;
+
+      // Filter by search term
+      if (searchTerm.trim() !== "") {
+        filteredOrgs = filteredOrgs.filter(
+          (org) =>
+            org.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            org.description.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+      }
+
+      // Filter by selected technology
+      if (selectedTechnology) {
+        filteredOrgs = filteredOrgs.filter((org) =>
+          org.technologies.includes(selectedTechnology)
+        );
+      }
+
+      setFilteredOrganizations(filteredOrgs);
+    };
+
+    // Handle changes in the search bar
+    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setSearchTerm(event.target.value);
+    };
+
+    // Handle changes in the technology select
+    const handleTechnologyChange = (
+      event: React.ChangeEvent<HTMLSelectElement>
+    ) => {
+      setSelectedTechnology(
+        event.target.value === "all" ? null : event.target.value
+      );
+    };
+
+    // Apply filters when search term or selected technology changes
+    useEffect(() => {
+      filterOrganizations();
+    }, [searchTerm, selectedTechnology]);
+
+
   return (
     <div className="min-h-screen bg-gray-100 ">
       <div>
@@ -27,7 +74,9 @@ export default function Organizations() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="py-6 flex justify-between items-center">
               <div>
-                <h1 className="text-4xl font-bold mt-2 text-white">GSOC Organizations</h1>
+                <h1 className="text-4xl font-bold mt-2 text-white">
+                  GSOC Organizations
+                </h1>
               </div>
             </div>
           </div>
@@ -66,6 +115,8 @@ export default function Organizations() {
             <Input
               className="border p-2 rounded-md w-1/3"
               placeholder="Search organizations, technology or topics"
+              value={searchTerm}
+              onChange={handleSearchChange}
             />
 
             <div className="flex items-center space-x-2">
@@ -120,16 +171,16 @@ export default function Organizations() {
             </div>
           </div>
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-            {OrgData.map((organization) => {
+            {filteredOrganizations.map((organization) => {
               return (
                 <OrgCard
-                  key={organization.orgUrl}
+                  key={organization.imageUrl}
                   name={organization.name}
                   description={organization.description}
                   imageUrl={organization.imageUrl}
-                  orgUrl={organization.orgUrl}
                   years={organization.years}
                   technologies={organization.technologies}
+                  topics={organization.topics}
                 />
               );
             })}

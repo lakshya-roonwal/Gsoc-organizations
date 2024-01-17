@@ -3,6 +3,6 @@ export interface OrganizationCardType {
   description: string;
   imageUrl: string;
   years: string[];
-  technologies: string[];
-  orgUrl:string;
+  technologies:string[];
+  topics:string[];
 }
