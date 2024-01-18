@@ -13,6 +13,7 @@ import OrgData from '@/data/organizations.json'
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { OrganizationCardType } from "@/types/types";
+import MultiSelect from "@/components/organizations/MultiSelect";
 
 export default function Organizations() {
 
