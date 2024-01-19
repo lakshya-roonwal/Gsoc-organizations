@@ -9,7 +9,7 @@ import {
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import OrgCard from "@/components/organizations/OrgCard";
-import OrgData from '@/data/organizations.json'
+import OrgData from "@/data/homepageorganizations.json";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { OrganizationCardType } from "@/types/types";
@@ -121,6 +121,7 @@ export default function Organizations() {
             />
 
             <div className="flex items-center space-x-2">
+              <MultiSelect />
               <div className="flex space-x-4">
                 <Select>
                   <SelectTrigger id="technologies">
