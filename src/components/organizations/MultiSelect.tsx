@@ -7,51 +7,13 @@ import { Badge } from "@/components/ui/badge";
 import { Command, CommandGroup, CommandItem } from "@/components/ui/command";
 import { Command as CommandPrimitive } from "cmdk";
 
-type Framework = Record<"value" | "label", string>;
-
-const FRAMEWORKS = [
-  {
-    value: "next.js",
-    label: "Next.js",
-  },
-  {
-    value: "sveltekit",
-    label: "SvelteKit",
-  },
-  {
-    value: "nuxt.js",
-    label: "Nuxt.js",
-  },
-  {
-    value: "remix",
-    label: "Remix",
-  },
-  {
-    value: "astro",
-    label: "Astro",
-  },
-  {
-    value: "wordpress",
-    label: "WordPress",
-  },
-  {
-    value: "express.js",
-    label: "Express.js",
-  },
-  {
-    value: "nest.js",
-    label: "Nest.js",
-  },
-] satisfies Framework[];
-
-const MultiSelect = () => {
+const MultiSelect = ({selectList,selected,setSelected}) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [open, setOpen] = React.useState(false);
-  const [selected, setSelected] = React.useState<Framework[]>([FRAMEWORKS[4]]);
   const [inputValue, setInputValue] = React.useState("");
 
-  const handleUnselect = React.useCallback((framework: Framework) => {
-    setSelected((prev) => prev.filter((s) => s.value !== framework.value));
+  const handleUnselect = React.useCallback((selectList: selectList) => {
+    setSelected((prev) => prev.filter((s) => s !== selectList));
   }, []);
 
   const handleKeyDown = React.useCallback(
@@ -67,7 +29,6 @@ const MultiSelect = () => {
             });
           }
         }
-        // This is not a default behaviour of the <input /> field
         if (e.key === "Escape") {
           input.blur();
         }
@@ -76,8 +37,8 @@ const MultiSelect = () => {
     []
   );
 
-  const selectables = FRAMEWORKS.filter(
-    (framework) => !selected.includes(framework)
+  const selectables = selectList.filter(
+    (selectList) => !selected.includes(selectList)
   );
 
   return (
@@ -87,36 +48,33 @@ const MultiSelect = () => {
     >
       <div className="group border border-input px-3 py-2 text-sm ring-offset-background rounded-md focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2">
         <div className="flex gap-1 flex-wrap">
-          {selected.map((framework) => {
-            return (
-              <Badge key={framework.value} variant="secondary">
-                {framework.label}
-                <button
-                  className="ml-1 ring-offset-background rounded-full outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      handleUnselect(framework);
-                    }
-                  }}
-                  onMouseDown={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                  }}
-                  onClick={() => handleUnselect(framework)}
-                >
-                  <X className="h-3 w-3 text-muted-foreground hover:text-foreground" />
-                </button>
-              </Badge>
-            );
-          })}
-          {/* Avoid having the "Search" Icon */}
+          {selected.map((selectList) => (
+            <Badge key={selectList} variant="secondary">
+              {selectList}
+              <button
+                className="ml-1 ring-offset-background rounded-full outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleUnselect(selectList);
+                  }
+                }}
+                onMouseDown={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                }}
+                onClick={() => handleUnselect(selectList)}
+              >
+                <X className="h-3 w-3 text-muted-foreground hover:text-foreground" />
+              </button>
+            </Badge>
+          ))}
           <CommandPrimitive.Input
             ref={inputRef}
             value={inputValue}
             onValueChange={setInputValue}
             onBlur={() => setOpen(false)}
             onFocus={() => setOpen(true)}
-            placeholder="Select frameworks..."
+            placeholder="Select selectList..."
             className="ml-2 bg-transparent outline-none placeholder:text-muted-foreground flex-1"
           />
         </div>
@@ -125,24 +83,22 @@ const MultiSelect = () => {
         {open && selectables.length > 0 ? (
           <div className="absolute w-full z-10 top-0 rounded-md border bg-popover text-popover-foreground shadow-md outline-none animate-in">
             <CommandGroup className="h-full overflow-auto">
-              {selectables.map((framework) => {
-                return (
-                  <CommandItem
-                    key={framework.value}
-                    onMouseDown={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                    }}
-                    onSelect={(value) => {
-                      setInputValue("");
-                      setSelected((prev) => [...prev, framework]);
-                    }}
-                    className={"cursor-pointer"}
-                  >
-                    {framework.label}
-                  </CommandItem>
-                );
-              })}
+              {selectables.map((selectList) => (
+                <CommandItem
+                  key={selectList}
+                  onMouseDown={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                  }}
+                  onSelect={() => {
+                    setInputValue("");
+                    setSelected((prev) => [...prev, selectList]);
+                  }}
+                  className={"cursor-pointer"}
+                >
+                  {selectList}
+                </CommandItem>
+              ))}
             </CommandGroup>
           </div>
         ) : null}
