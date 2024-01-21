@@ -42,14 +42,12 @@ export default function Organizations() {
           {/* Filtering Section */}
           <FilteringSection
             organizations={organizations}
-            setOrganizations={setOrganizations}
-            filteredOrganizations={filteredOrganizations}
             setFilteredOrganizations={setFilteredOrganizations}
           />
 
           {/* Organizations Section */}
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-            {organizations.map((organization) => {
+            {filteredOrganizations.map((organization) => {
               return (
                 <OrgCard
                   key={organization.imageUrl}

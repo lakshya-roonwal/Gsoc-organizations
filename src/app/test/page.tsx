@@ -1,162 +1,72 @@
-"use client";
+import {
+  ResponsiveContainer,
+  AreaChart,
+  XAxis,
+  YAxis,
+  Area,
+  Tooltip,
+  CartesianGrid,
+} from "recharts";
+import { format, parseISO, subDays } from "date-fns";
 
-import React, { useEffect, useState } from "react";
-import OrgData from "@/data/homepageorganizations.json";
-import OrgCard from "@/components/organizations/OrgCard";
-import { OrganizationCardType } from "@/types/types";
+const data = [];
+for (let num = 30; num >= 0; num--) {
+  data.push({
+    date: subDays(new Date(), num).toISOString().substr(0, 10),
+    value: 1 + Math.random(),
+  });
+}
 
-import { FilterDataAdvanced } from "filter-data-advanced/dist/FilterDataAdvanced";
-import { Input } from "@/components/ui/input";
-import MultiSelect from "@/components/organizations/MultiSelect";
-
-const page = () => {
-  const [organizations, setOrganizations] =
-    useState<OrganizationCardType[]>(OrgData);
-  const [filteredOrganizations, setFilteredOrganizations] = useState<
-    OrganizationCardType[]
-  >(organizations);
-  const [searchQuery,setSearchQuery]=useState({
-    name:"",
-    years:[],
-    technologies:[],
-    topics:[],
-  })
-  const yearsList=[
-    "2016",
-    "2017",
-    "2018",
-    "2019",
-    "2020",
-    "2021",
-    "2022",
-    "2023",
-  ]
-  const technologiesList = [
-    " swift",
-    " Objective C",
-    " python 3",
-    " lua",
-    "java",
-    " vala",
-    " xmpp",
-    " java",
-    " webrtc",
-    " c++",
-    " erlang",
-    " dart",
-    " asynchronous i/o",
-    "vala",
-    "javascript",
-  ];
-  const topcisList = [
-    " chat",
-    " realtime communications",
-    " WebRTC",
-    " internet of things",
-    "instant messaging",
-    " Jingle",
-    " Real-Time Communication",
-    " realtime communication",
-    " xmpp",
-    " machine-to-machine",
-    " communications",
-    " voip",
-    " social",
-    " messaging",
-  ];
-
-  const [years, setYears] = useState([])
-  const [technologies, setTechnologies] = useState([])
-  const [topics, setTopics] = useState([])
-
-  const handleSearchQueryChange=(name:string,value:string|string[])=>{
-    setSearchQuery({
-      ...searchQuery,
-      [name]:value,
-    });
-  }
-
-
-  let obj = new FilterDataAdvanced();
-
-  useEffect(() => {
-    // Name
-    let orgFilterByName = obj.filterByKeyAndMultiValues(organizations, "name", [
-      searchQuery.name,
-    ]);
-    // Technologies
-    console.log("orgFilterByName : ", orgFilterByName);
-    let orgFilterByTechnologies = obj.filterByKeyAndMultiValues(
-      orgFilterByName,
-      "technologies",
-      [""]
-    );
-    console.log("orgFilterByTechnologies : ", orgFilterByTechnologies);
-    // Topic
-    let orgFilterByTopics = obj.filterByKeyAndMultiValues(
-      orgFilterByTechnologies,
-      "topics",
-      [""]
-    );
-    console.log("orgFilterByTopics : ", orgFilterByTopics);
-    // Years
-    let orgFilterByYears = obj.filterByKeyAndMultiValues(
-      orgFilterByTopics,
-      "years",
-      ["2022"]
-    );
-    console.log("orgFilterByYears : ", orgFilterByYears);
-
-    setFilteredOrganizations(orgFilterByYears);
-  }, [searchQuery]);
-
-  console.log("Years",years);
-
+export default function Home() {
   return (
-    <div className="w-full flex flex-col justify-center">
-      <div className="input-box">
-        <Input
-          value={searchQuery.name}
-          onChange={(e) => {
-            handleSearchQueryChange("name", e.target.value);
+    <ResponsiveContainer width="100%" height={400}>
+      <AreaChart data={data}>
+        <defs>
+          <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#2451B7" stopOpacity={0.4} />
+            <stop offset="75%" stopColor="#2451B7" stopOpacity={0.05} />
+          </linearGradient>
+        </defs>
+
+        <Area dataKey="value" stroke="#2451B7" fill="url(#color)" />
+
+        <XAxis
+          dataKey="date"
+          axisLine={false}
+          tickLine={false}
+          tickFormatter={(str) => {
+            const date = parseISO(str);
+            if (date.getDate() % 7 === 0) {
+              return format(date, "MMM, d");
+            }
+            return "";
           }}
         />
-        <div>
-            {years.map((year)=>{
-                return (<p>{year}</p>)
-            })}
-        </div>
-        <div>
-            {technologies.map((technology)=>{
-                return (<p>{technology}</p>)
-            })}
-        </div>
-        <div>
-            {topics.map((topic)=>{
-                return (<p>{topic}</p>)
-            })}
-        </div>
-        <MultiSelect selectList={yearsList} selected={years} setSelected={setYears} />
-        <MultiSelect selectList={technologiesList} selected={technologies} setSelected={setTechnologies} />
-        <MultiSelect selectList={topcisList} selected={topics} setSelected={setTopics} />
-      </div>
-      <div className="w-1/2 mx-auto">
-        {filteredOrganizations.map((organization) => {
-          return (
-            <OrgCard
-              key={organization.imageUrl}
-              name={organization.name}
-              description={organization.description}
-              imageUrl={organization.imageUrl}
-              years={organization.years}
-              technologies={organization.technologies}
-              topics={organization.topics}
-            />
-          );
-        })}
-      </div>
-    </div>
-  );
-};
 
-export default page;
+        <YAxis
+          datakey="value"
+          axisLine={false}
+          tickLine={false}
+          tickCount={8}
+          tickFormatter={(number) => `$${number.toFixed(2)}`}
+        />
+
+        <Tooltip content={<CustomTooltip />} />
+
+        <CartesianGrid opacity={0.1} vertical={false} />
+      </AreaChart>
+    </ResponsiveContainer>
+  );
+}
+
+function CustomTooltip({ active, payload, label }) {
+  if (active) {
+    return (
+      <div className="tooltip">
+        <h4>{format(parseISO(label), "eeee, d MMM, yyyy")}</h4>
+        <p>${payload[0].value.toFixed(2)} CAD</p>
+      </div>
+    );
+  }
+  return null;
+}
