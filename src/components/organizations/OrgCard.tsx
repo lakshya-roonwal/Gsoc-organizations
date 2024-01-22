@@ -18,7 +18,7 @@ const OrgCard: FC<OrganizationCardType> = ({
   topics,
 }: OrganizationCardType) => {
   return (
-    <Card className="w-full">
+    <Card className="w-full shadow-sm">
       <CardHeader>
         <img alt={description} className="h-24 object-contain max-w-full align-middle" src={imageUrl} />
       </CardHeader>

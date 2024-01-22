@@ -13,208 +13,187 @@ import {
   NewspaperIcon,
   MailboxIcon,
 } from "lucide-react";
+import ProjectsSection from "@/components/singleorg/ProjectsSection";
 
 interface pageProps {}
 
 const page: FC<pageProps> = ({}) => {
-
-  const getIcon=(key:string)=>{
+  // Function That will render Icons acording to socials
+  const getIcon = (key: string) => {
     switch (key) {
       case "Chat":
-        return <MessageCircleMore  className="text-blue-500"/>;
+        return <MessageCircleMore className="text-blue-500" />;
         break;
       case "Mailing list / Forum":
         return <MailboxIcon className="text-blue-500" />;
         break;
       case "Email":
-        return <Mail  className="text-blue-500"/>;
+        return <Mail className="text-blue-500" />;
         break;
       case "Twitter":
-        return <Twitter  className="text-blue-500"/>;
+        return <Twitter className="text-blue-500" />;
         break;
       case "Blog":
-        return <NewspaperIcon  className="text-blue-500"/>;
+        return <NewspaperIcon className="text-blue-500" />;
         break;
       case "IRC":
-        return <MessageCircleMore  className="text-blue-500"/>;
+        return <MessageCircleMore className="text-blue-500" />;
         break;
 
       default:
         break;
     }
-  }
+  };
 
   const orgData = {
-    name: "XMPP Standards Foundation",
-    description: " XSF develops an open-standard messaging protocol ",
+    name: "The Apertium Project",
+    description: " A free/open-source rule-based machine translation platform ",
     imageUrl:
-      "https://summerofcode.withgoogle.com/media/org/xmpp-standards-foundation/1qfi0ofcfmb8qin8-360.png",
-    years: ["2023", "2022", "2020", "2019", "2017", "2017"],
+      "https://summerofcode.withgoogle.com/media/archive/5377487227846656.png",
+    years: ["2016"],
     technologies: [
-      " swift",
-      " Objective C",
-      " python 3",
-      " lua",
-      "java",
-      " vala",
-      " xmpp",
-      " java",
-      " webrtc",
+      " finite-state technologies",
+      " perl",
+      " xml",
       " c++",
-      " erlang",
-      " dart",
-      " asynchronous i/o",
-      "vala",
-      "javascript",
+      "python",
     ],
     topics: [
-      " chat",
-      " realtime communications",
-      " WebRTC",
-      " internet of things",
-      "instant messaging",
-      " Jingle",
-      " Real-Time Communication",
-      " realtime communication",
-      " xmpp",
-      " machine-to-machine",
-      " communications",
-      " voip",
-      " social",
-      " messaging",
+      " computer-aided translation",
+      "natural language processing",
+      " morphological analysis",
+      " human language technologies",
+      " machine translation",
     ],
     socials: {
-      "Chat": "https://xmpp.org/chat#converse/room?jid=gsoc@muc.xmpp.org",
-      "Mailing list / Forum": "https://mail.jabber.org/mailman/listinfo/gsoc",
-      Email: "mailto:xsfcommteam@protonmail.com",
-      Twitter: "https://fosstodon.org/@xmpp",
-      Blog: "https://xmpp.org/blog/",
-      "IRC": "https://wiki.xmpp.org/web/GSoC/2020#Join_the_group_chat.21",
+      text: "https://lists.sourceforge.net/lists/listinfo/apertium-stuff",
     },
-    websiteURL: "https://xmpp.org/",
+    websiteURL: "http://wiki.apertium.org",
     projects: [
       {
-        "2023": [
+        "2016": [
           {
-            contributor: "hrxi",
-            mentor: "Marvin W., fiaxh_",
-            projectTitle: "Windows Support for Dino",
+            contributor: "Kira",
+            mentor: "Kevin Brubeck Unhammer, Jonathan W",
+            projectTitle: "Apertium website improvements",
             projectDescription:
-              "This project aims to add Windows support to the previously Linux-only XMPP client Dino. Since Windows is installed on approximately 75% of all...",
+              "New features provide benefits both to Apertium users and Apertium team.\nApertium website users will get the improved tool which provides a new...",
             viewProjectDetailsURL:
-              "https://summerofcode.withgoogle.com/programs/2023/projects/ygGSIiHc",
+              "https://summerofcode.withgoogle.com/archive/2016/projects/5652720409116672",
             viewProjectCodeURL:
-              "https://hrxi.github.io/gsoc/blog/gsoc-2023-conclusion",
+              "http://wiki.apertium.org/wiki/GSOC%2716_Kira%27s_results._Apertium_website_improvements",
           },
           {
-            contributor: "Ikjot Singh Dhody",
-            mentor: "PapaTutuWawa",
-            projectTitle: "Implement group chats in Moxxy",
-            projectDescription:
-              "Group chats are an integral component of instant messaging clients used in everyday communication. However, Moxxy, currently lacks support for group...",
-            viewProjectDetailsURL:
-              "https://summerofcode.withgoogle.com/programs/2023/projects/UK3oE0f9",
-            viewProjectCodeURL:
-              "https://moxxy.org/posts/2023-08-20-Moxxy-MUC-GSoC-Final-Report.html",
-          },
-        ],
-      },
-      {
-        "2022": [
-          {
-            contributor: "Patiga",
-            mentor: "Marvin W., fiaxh",
-            projectTitle: "More flexibility in dino file transfers",
-            projectDescription:
-              "Resource-wise, messenger applications tend to be on the lightweight side of the spectrum. This drastically changes when file transfers are added to...",
-            viewProjectDetailsURL:
-              "https://summerofcode.withgoogle.com/programs/2022/projects/z9ixHTWZ",
-            viewProjectCodeURL: "https://github.com/dino/dino/pull/1275",
-          },
-        ],
-      },
-      {
-        "2020": [
-          {
-            contributor: "Aditya Borikar",
-            mentor: "Florian Schmaus, Paul Schaub",
-            projectTitle: "Websocket support IgniteRealtime Smack",
-            projectDescription:
-              "XMPP RFCs and Specifications define connection establishment over TCP, BOSH and websockets. Smack currently establishes connection between Server and...",
-            viewProjectDetailsURL:
-              "https://summerofcode.withgoogle.com/archive/2020/projects/6299365221597184",
-            viewProjectCodeURL: "https://adiaholic.github.io/gsoc2020/",
-          },
-          {
-            contributor: "wolfie_anmol",
-            mentor: "Marvin W, fiaxh",
-            projectTitle: "In-Band Real Time Texting",
-            projectDescription:
-              "This project aims to implement Real-Time Texting in Dino so as to increase the interactiveness of traditional texting by previewing message to the...",
-            viewProjectDetailsURL:
-              "https://summerofcode.withgoogle.com/archive/2020/projects/5173650568773632",
-            viewProjectCodeURL: "https://github.com/dino/dino/pull/895",
-          },
-        ],
-      },
-      {
-        "2019": [
-          {
-            contributor: "Madhur Garg",
-            mentor: "Maxime Buquet",
+            contributor: "frankier",
+            mentor: "Mikel L. Forcada, Flammie, Francis Tyers",
             projectTitle:
-              "Poezio: Infinite scrolling using MAM and General Improvement",
+              "Investigation of new ways to combining Constraint-grammar and apertium-tagger & a new averaged perception based tagger",
             projectDescription:
-              "This project intends to improve the overall functionality of Poezio by implementing \u201cInfinite scrolling using Message Archive Management (MAM)\u201d and...",
+              "Many less resourced languages don\u2019t have a tagged corpus or only have a small amount of poorly tagged material. In such cases unsupervised learning...",
             viewProjectDetailsURL:
-              "https://summerofcode.withgoogle.com/archive/2019/projects/6478437231886336",
+              "https://summerofcode.withgoogle.com/archive/2016/projects/5669287574372352",
             viewProjectCodeURL:
-              "https://gist.github.com/Madhur96/98cde10cd5f9d868b8dc22cb06b2e9c2#file-gsoc_19-md",
+              "http://wiki.apertium.org/wiki/Frankier/GSOC_2016_submission",
           },
           {
-            contributor: "Jo\u00e3o Duarte",
-            mentor: "Matthew Wild",
-            projectTitle: "Prosody Plugin Installer",
+            contributor: "gianfro",
+            mentor: "admamo, hectoralos, Francis Tyers",
+            projectTitle: "Sardu, abbarra vivu!",
             projectDescription:
-              "A tool to manage Prosody's community modules. It allows to install, remove, update and list plugins. A mercurial repository is developed in order to...",
+              "The project I intend to carry out is the creation of a MT engine for the language pair Italian-Sardinian based on the Apertium platform. As pointed...",
             viewProjectDetailsURL:
-              "https://summerofcode.withgoogle.com/archive/2019/projects/4544465266540544",
+              "https://summerofcode.withgoogle.com/archive/2016/projects/6136890327564288",
             viewProjectCodeURL:
-              "https://gsoc-prosody-2019.blogspot.com/2019/08/final-gsoc-report-prosody-plugin.html",
+              "https://apertium.projectjj.com/gsoc2016/gfro3d.html",
           },
           {
-            contributor: "hrxi",
-            mentor: "Marvin W, fiaxh",
-            projectTitle: "Jingle File Transfer Support for Dino",
+            contributor: "mgokirmak",
+            mentor: "Vinit Ravishankar, Kevin Brubeck Unhammer",
+            projectTitle: "Kurmanji (Kurdish)-English MT",
             projectDescription:
-              "In addition to the already implemented file transfer via HTTP upload, add support for peer-to-peer file transfers via Jingle.",
+              "I propose to work on the Kurmanji-English language pair, with the aim of improving it to the state of the art level, in terms of coverage and...",
             viewProjectDetailsURL:
-              "https://summerofcode.withgoogle.com/archive/2019/projects/6548707745464320",
-            viewProjectCodeURL: "https://hrxi.github.io/gsoc/blog/the-end",
-          },
-        ],
-      },
-      {
-        "2017": [
-          {
-            contributor: "Pawe\u0142 Alameyo \u015acibiorski",
-            mentor: "Guus der Kinderen",
-            projectTitle: "Certificate management support for Spark",
-            projectDescription:
-              "The aim of the project is to provide to the Spark's users a tool for managing their Public Key Certificates. Currently the users can only decide if...",
-            viewProjectDetailsURL:
-              "https://summerofcode.withgoogle.com/archive/2017/projects/6661234564792320",
-            viewProjectCodeURL: "https://alameyo.github.io/GSoC2017/",
+              "https://summerofcode.withgoogle.com/archive/2016/projects/5069737520267264",
+            viewProjectCodeURL:
+              "http://wiki.apertium.org/wiki/Kurmanji_and_English/Final_report",
           },
           {
-            contributor: "vanitasvitae",
-            mentor: "Florian Schmaus",
-            projectTitle: "OMEMO encrypted Jingle implementation",
+            contributor: "Maria Sheyanova",
+            mentor: "Rob Reynolds, Francis Tyers",
+            projectTitle: "Project: Adopting a language pair",
             projectDescription:
-              "This is my proposal to implement Jingle file transfer in Smack utilizing my OMEMO implementation I made earlier this year as part of my bachelors...",
+              "Currently the pol-rus language pair is in the beginning state (in the incubator). There are very few words in the bilingual dictionary and no rules....",
             viewProjectDetailsURL:
-              "https://summerofcode.withgoogle.com/archive/2017/projects/6702837899722752",
-            viewProjectCodeURL: "https://vanitasvitae.github.io/GSOC2017/",
+              "https://summerofcode.withgoogle.com/archive/2016/projects/5122107398684672",
+            viewProjectCodeURL:
+              "http://wiki.apertium.org/wiki/Polish_and_Russian/Project_description#Description_of_the_main_package_components",
+          },
+          {
+            contributor: "Aidana",
+            mentor: "Jonathan W, Aida Sundetova",
+            projectTitle: "Adopt an unreleased Kazakh-English language pair",
+            projectDescription:
+              "These days the translating text automatically by using machine translation is very important, because it helps people from whole world to understand...",
+            viewProjectDetailsURL:
+              "https://summerofcode.withgoogle.com/archive/2016/projects/4744168530247680",
+            viewProjectCodeURL:
+              "http://wiki.apertium.org/wiki/User:Aidana/Proposal/Working_plan#Report_of_GSoC_project",
+          },
+          {
+            contributor: "Jaipal",
+            mentor: "Mikel L. Forcada, Vinit Ravishankar",
+            projectTitle: "Lint For Apertium",
+            projectDescription:
+              "My draft proposal for the Lint for Apertium project.",
+            viewProjectDetailsURL:
+              "https://summerofcode.withgoogle.com/archive/2016/projects/4902239969738752",
+            viewProjectCodeURL:
+              "https://gitlab.com/jpsinghgoud/apertium-lint/commits/master",
+          },
+          {
+            contributor: "Junaid Ali",
+            mentor: "Mikel L. Forcada, Kevin Brubeck Unhammer, Tino Didriksen",
+            projectTitle: "Automatic Blank Handling",
+            projectDescription:
+              "Our current format handling is brittle, requiring transfer rules to explicitly deal with blanks, and some times inevitably outputting them in the...",
+            viewProjectDetailsURL:
+              "https://summerofcode.withgoogle.com/archive/2016/projects/5791376851599360",
+            viewProjectCodeURL:
+              "https://apertium.projectjj.com/gsoc2016/junzayy.html",
+          },
+          {
+            contributor: "Uliana Sentsova",
+            mentor: "Ornela, Xavi Ivars",
+            projectTitle:
+              "Machine Translation for Sicilian-Spanish Language Pair",
+            projectDescription:
+              "The project goal is to create a machine translation package for Sicilian-Spanish language pair on the base of Apertium\u2019s machine translation system....",
+            viewProjectDetailsURL:
+              "https://summerofcode.withgoogle.com/archive/2016/projects/5883995808071680",
+            viewProjectCodeURL:
+              "http://wiki.apertium.org/wiki/Siciliano_y_castellano/Informe_final",
+          },
+          {
+            contributor: "kvld",
+            mentor: "Rob Reynolds, Francis Tyers, Trondtr",
+            projectTitle: "New Belarusian-Russian language pair",
+            projectDescription:
+              "I propose to create Belarusian-Russian language pair.",
+            viewProjectDetailsURL:
+              "https://summerofcode.withgoogle.com/archive/2016/projects/5954603862458368",
+            viewProjectCodeURL:
+              "http://wiki.apertium.org/wiki/Belarusian_and_Russian/Final_report",
+          },
+          {
+            contributor: "tiefling-cat",
+            mentor: "Mikel L. Forcada, vmsanchez, Flammie, Francis Tyers",
+            projectTitle: "Apertium Weighted Transfer Rules",
+            projectDescription:
+              "The idea of the task is to implement a mechanism of resolving transfer rule conflicts using previously obtained rule weights. The tool for obtaining...",
+            viewProjectDetailsURL:
+              "https://summerofcode.withgoogle.com/archive/2016/projects/5976116011466752",
+            viewProjectCodeURL:
+              "http://wiki.apertium.org/wiki/Weighted_transfer_rules_at_GSoC_2016",
           },
         ],
       },
@@ -239,7 +218,7 @@ const page: FC<pageProps> = ({}) => {
                 <h3 className="font-semibold">Technologies</h3>
                 <p className="mt-2 text-sm">
                   {orgData.technologies.map((technology) => (
-                    <span>{technology},</span>
+                    <span>{technology}, </span>
                   ))}
                 </p>
               </div>
@@ -247,7 +226,7 @@ const page: FC<pageProps> = ({}) => {
                 <h3 className="font-semibold">Topics</h3>
                 <p className="mt-2 text-sm">
                   {orgData.topics.map((topic) => (
-                    <span>{topic},</span>
+                    <span>{topic}, </span>
                   ))}
                 </p>
               </div>
@@ -261,9 +240,7 @@ const page: FC<pageProps> = ({}) => {
               <div className="flex flex-col w-full gap-2 p-4 px-8 rounded-md shadow-md bg-white min-w-[20rem]">
                 {Object.keys(orgData.socials).map((key) => (
                   <div key={key} className="flex items-center gap-3">
-                    <div>
-                      {getIcon(key)}
-                    </div>
+                    <div>{getIcon(key)}</div>
                     <Link
                       className="font-medium text-blue-500"
                       href={orgData.socials[key]}
@@ -276,92 +253,7 @@ const page: FC<pageProps> = ({}) => {
             </div>
           </div>
         </section>
-        {/* Projects Section with Org. Projects */}
-        <Tabs defaultValue={Object.keys(orgData.projects[0])[0]}>
-          <section className="w-full py-4 bg-[#F8F9FA]">
-            <div className="projects max-w-7xl mx-auto my-8">
-              <h2 className="text-2xl font-bold text-center text-gray-900 my-4">
-                Projects
-              </h2>
-              <div className="tabs w-full flex justify-center items-center">
-                <TabsList className="flex mb-4">
-                  {orgData.projects.map((yearObject) => {
-                    const year = Object.keys(yearObject)[0];
-                    return (
-                      <div key={year}>
-                        <TabsTrigger value={year}>{year}</TabsTrigger>
-                      </div>
-                    );
-                  })}
-                </TabsList>
-              </div>
-              <div>
-                {orgData.projects.map((yearObject) => {
-                  const year = Object.keys(yearObject)[0];
-
-                  return (
-                    <div key={year}>
-                      {yearObject[year].map((project) => (
-                        <TabsContent value={year}>
-                          <div className="bg-white shadow rounded-lg p-6">
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-                              <div>
-                                <h3 className="text-lg leading-6 font-medium text-gray-900">
-                                  Contributor
-                                </h3>
-                                <p className="mt-1 max-w-2xl text-sm text-gray-500">
-                                  {project.contributor}
-                                </p>
-                              </div>
-                              <div>
-                                <h3 className="text-lg leading-6 font-medium text-gray-900">
-                                  Mentor
-                                </h3>
-                                <p className="mt-1 max-w-2xl text-sm text-gray-500">
-                                  {project.mentor}
-                                </p>
-                              </div>
-                            </div>
-                            <h4 className="text-lg leading-6 font-semibold text-gray-900">
-                              {project.projectTitle}
-                            </h4>
-                            <p className="mt-2 text-sm text-gray-500">
-                              {project.projectDescription}
-                            </p>
-                            <div className="flex mt-5 gap-2">
-                              <Button
-                                asChild
-                                className="bg-blue-500 hover:bg-blue-600 text-white"
-                              >
-                                <Link
-                                  target="__blank"
-                                  href={project.viewProjectDetailsURL}
-                                >
-                                  View project details
-                                </Link>
-                              </Button>
-                              <Button
-                                asChild
-                                className="bg-gray-200 hover:bg-gray-300 text-gray-800"
-                              >
-                                <Link
-                                  target="__blank"
-                                  href={project.viewProjectCodeURL}
-                                >
-                                  View code
-                                </Link>
-                              </Button>
-                            </div>
-                          </div>
-                        </TabsContent>
-                      ))}
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </section>
-        </Tabs>
+        <ProjectsSection projects={orgData.projects} />
       </div>
     </div>
   );
