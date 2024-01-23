@@ -7,8 +7,9 @@ connect();
 
 export async function GET(request: NextRequest) {
   try {
-    // TODO: Add your logic here
-    const orgs = await AllOrgs.find()
+    const orgs = await AllOrgs.find()populate('projects');
+
+
         
     return NextResponse.json({ msg: "Sucess",orgs:orgs }, { status: 200 });
   } catch (error) {
@@ -16,3 +17,4 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ msg: " Error" });
   }
 }
+

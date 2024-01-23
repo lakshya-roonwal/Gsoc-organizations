@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const projectSchema = new mongoose.Schema({
+const SingleProjectSchema = new mongoose.Schema({
   contributor: String,
   mentor: String,
   projectTitle: String,
@@ -9,7 +9,7 @@ const projectSchema = new mongoose.Schema({
   viewProjectCodeURL: String,
 });
 
-const xsfSchema = new mongoose.Schema({
+const allOrgsSchema = new mongoose.Schema({
   name: String,
   description: String,
   imageUrl: String,
@@ -18,13 +18,12 @@ const xsfSchema = new mongoose.Schema({
   topics: [String],
   socials: mongoose.Schema.Types.Mixed,
   websiteURL: String,
-  projects: [
-    {
-      [String]: [projectSchema], // Dynamic key-value pair
-    },
-  ],
+  projects: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "projects",
+  },
 });
 
-const AllOrgs = mongoose.models.AllOrgs || mongoose.model("AllOrgs", xsfSchema);
+const AllOrgs = mongoose.models.AllOrgs || mongoose.model("AllOrgs", allOrgsSchema);
 
 module.exports = AllOrgs;

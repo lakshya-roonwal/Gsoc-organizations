@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const HomeOrgsSchema = new mongoose.Schema({
+const ProjectsSchema = new mongoose.Schema({
   name: { type: mongoose.Schema.Types.ObjectId, ref: "AllOrgs" },
   description: { type: mongoose.Schema.Types.ObjectId, ref: "AllOrgs" },
   imageUrl: { type: mongoose.Schema.Types.ObjectId, ref: "AllOrgs" },
@@ -10,6 +10,6 @@ const HomeOrgsSchema = new mongoose.Schema({
 });
 
 // Create the model for the simplified collection
-const HomeOrgs =   mongoose.models.HomeOrgs || mongoose.model("HomeOrgs", HomeOrgsSchema);
+const Projects = mongoose.models.Projects || mongoose.model("Projects", ProjectsSchema);
 
-module.exports=HomeOrgs;
+module.exports = Projects;
