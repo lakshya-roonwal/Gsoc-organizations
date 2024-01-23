@@ -230,7 +230,11 @@ const page: FC<pageProps> = ({}) => {
                   ))}
                 </p>
               </div>
-              <a className="block mt-4 text-blue-600" href="#">
+              <a
+                className="block mt-4 text-blue-600"
+                href={orgData.websiteURL}
+                target="__blank"
+              >
                 {orgData.websiteURL}
               </a>
             </div>
@@ -244,6 +248,7 @@ const page: FC<pageProps> = ({}) => {
                     <Link
                       className="font-medium text-blue-500"
                       href={orgData.socials[key]}
+                      target="__blank"
                     >
                       {key}
                     </Link>
