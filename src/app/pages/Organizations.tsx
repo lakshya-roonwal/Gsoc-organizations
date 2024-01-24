@@ -50,16 +50,17 @@ export default function Organizations({ fetchedOrganizations }) {
             {filteredOrganizations.map((organization) => {
               return (
                 <>
-                <OrgCard
-                  key={organization.imageUrl}
-                  name={organization.name}
-                  description={organization.description}
-                  imageUrl={organization.imageUrl}
-                  years={organization.years}
-                  technologies={organization.technologies}
-                  topics={organization.topics}
+                  <OrgCard
+                    key={organization._id}
+                    _id={organization._id}
+                    name={organization.name}
+                    description={organization.description}
+                    imageUrl={organization.imageUrl}
+                    years={organization.years}
+                    technologies={organization.technologies}
+                    topics={organization.topics}
                   />
-                  </>
+                </>
               );
             })}
           </div>

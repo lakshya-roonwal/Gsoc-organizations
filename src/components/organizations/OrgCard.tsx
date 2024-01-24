@@ -15,12 +15,17 @@ const OrgCard: FC<OrganizationCardType> = ({
   imageUrl,
   years,
   technologies,
+  _id,
   topics,
 }: OrganizationCardType) => {
   return (
     <Card className="w-full shadow-sm">
       <CardHeader>
-        <img alt={description} className="h-24 object-contain max-w-full align-middle" src={imageUrl} />
+        <img
+          alt={description}
+          className="h-24 object-contain max-w-full align-middle"
+          src={imageUrl}
+        />
       </CardHeader>
       <CardContent>
         <h2 className="text-xl font-semibold">{name}</h2>
@@ -43,7 +48,7 @@ const OrgCard: FC<OrganizationCardType> = ({
         </div>
       </CardContent>
       <CardFooter className="flex justify-between">
-        <Link className="text-blue-600 hover:underline" href="#">
+        <Link className="text-blue-600 hover:underline" href={`/singleorg/${_id}`}>
           Learn more
         </Link>
       </CardFooter>
