@@ -10,9 +10,7 @@ const SingleProjectSchema = new mongoose.Schema({
 });
 
 const projectsSchema=new mongoose.Schema({
-  projects:[{
     ['String']:[SingleProjectSchema]
-  }]
 })
 
 const allOrgsSchema = new mongoose.Schema({
@@ -24,10 +22,9 @@ const allOrgsSchema = new mongoose.Schema({
   topics: [String],
   socials: mongoose.Schema.Types.Mixed,
   websiteURL: String,
-  projects: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "projects",
-  },
+  projects: [
+    projectsSchema
+  ]
 });
 
 const AllOrgs = mongoose.models.AllOrgs || mongoose.model("AllOrgs", allOrgsSchema);

@@ -7,7 +7,7 @@ connect();
 
 export async function GET(request: NextRequest) {
   try {
-    const orgs = await AllOrgs.find()
+    const orgs = await AllOrgs.find({}).select("-projects");
 
     return NextResponse.json({ msg: "Sucess",orgs:orgs }, { status: 200 });
         
