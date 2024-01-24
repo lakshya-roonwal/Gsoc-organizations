@@ -16,9 +16,9 @@ import { OrganizationCardType } from "@/types/types";
 import MultiSelect from "@/components/organizations/MultiSelect";
 import FilteringSection from "@/components/organizations/FilteringSection";
 
-export default function Organizations() {
+export default function Organizations({ fetchedOrganizations }) {
   const [organizations, setOrganizations] =
-    useState<OrganizationCardType[]>(OrgData);
+    useState<OrganizationCardType[]>(fetchedOrganizations);
   const [filteredOrganizations, setFilteredOrganizations] =
     useState<OrganizationCardType[]>(organizations);
 
@@ -49,6 +49,7 @@ export default function Organizations() {
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
             {filteredOrganizations.map((organization) => {
               return (
+                <>
                 <OrgCard
                   key={organization.imageUrl}
                   name={organization.name}
@@ -57,7 +58,8 @@ export default function Organizations() {
                   years={organization.years}
                   technologies={organization.technologies}
                   topics={organization.topics}
-                />
+                  />
+                  </>
               );
             })}
           </div>

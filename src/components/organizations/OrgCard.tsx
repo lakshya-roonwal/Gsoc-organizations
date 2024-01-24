@@ -43,7 +43,6 @@ const OrgCard: FC<OrganizationCardType> = ({
         </div>
       </CardContent>
       <CardFooter className="flex justify-between">
-        <span className="text-gray-500">Year: 2017</span>
         <Link className="text-blue-600 hover:underline" href="#">
           Learn more
         </Link>

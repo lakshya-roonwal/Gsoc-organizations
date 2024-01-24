@@ -29,8 +29,4 @@ const allOrgsSchema = new mongoose.Schema({
 
 const AllOrgs = mongoose.models.AllOrgs || mongoose.model("AllOrgs", allOrgsSchema);
 
-const Projects =
-  mongoose.models.Projects || mongoose.model("projects", projectsSchema);
-
-
-module.exports = {AllOrgs,Projects};
+module.exports = {AllOrgs};
