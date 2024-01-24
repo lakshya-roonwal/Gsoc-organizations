@@ -9,6 +9,12 @@ const SingleProjectSchema = new mongoose.Schema({
   viewProjectCodeURL: String,
 });
 
+const projectsSchema=new mongoose.Schema({
+  projects:[{
+    ['String']:[SingleProjectSchema]
+  }]
+})
+
 const allOrgsSchema = new mongoose.Schema({
   name: String,
   description: String,
@@ -26,4 +32,8 @@ const allOrgsSchema = new mongoose.Schema({
 
 const AllOrgs = mongoose.models.AllOrgs || mongoose.model("AllOrgs", allOrgsSchema);
 
-module.exports = AllOrgs;
+const Projects =
+  mongoose.models.Projects || mongoose.model("projects", projectsSchema);
+
+
+module.exports = {AllOrgs,Projects};
