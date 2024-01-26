@@ -103,7 +103,9 @@ const SingleOrg: FC<pageProps> = ({ orgData }) => {
             </div>
           </div>
         </section>
-        <ProjectsSection projects={orgData.projects} />
+        <ProjectsSection 
+        projects={orgData.projects}
+         />
       </div>
     </div>
   );

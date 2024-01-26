@@ -1,36 +1,32 @@
-import React from 'react'
+import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import Link from 'next/link';
+import Link from "next/link";
 
 const ProjectsSection = ({projects}) => {
   return (
     <div>
-    <Tabs defaultValue={Object.keys(projects[0])[0]}>
-      <section className="w-full py-4 bg-[#F8F9FA]">
-        <div className="projects max-w-7xl mx-auto my-8">
-          <h2 className="text-2xl font-bold text-center text-gray-900 my-4">
-            Projects
-          </h2>
-          <div className="tabs w-full flex justify-center items-center">
-            <TabsList className="flex mb-4">
-              {projects.map((yearObject) => {
-                const year = Object.keys(yearObject)[0];
-                return (
-                  <div key={year}>
-                    <TabsTrigger value={year}>{year}</TabsTrigger>
-                  </div>
-                );
-              })}
-            </TabsList>
-          </div>
-          <div>
-            {projects.map((yearObject) => {
-              const year = Object.keys(yearObject)[0];
-
-              return (
+      <Tabs defaultValue={Object.keys(projects)[0]}>
+        <section className="w-full py-4 bg-[#F8F9FA]">
+          <div className="projects max-w-7xl mx-auto my-8">
+            <h2 className="text-2xl font-bold text-center text-gray-900 my-4">
+              Projects
+            </h2>
+            <div className="tabs w-full flex justify-center items-center">
+              <TabsList className="flex mb-4">
+                {Object.keys(projects).map((year) => {
+                  return (
+                    <div key={year}>
+                      <TabsTrigger value={year}>{year}</TabsTrigger>
+                    </div>
+                  );
+                })}
+              </TabsList>
+            </div>
+            <div>
+              {Object.entries(projects).map(([year, yearObject]) => (
                 <div key={year}>
-                  {yearObject[year].map((project) => (
+                  {yearObject.projects.map((project, index) => (
                     <TabsContent value={year}>
                       <div className="bg-white shadow rounded-lg p-6">
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
@@ -39,23 +35,15 @@ const ProjectsSection = ({projects}) => {
                               Contributor
                             </h3>
                             <p className="mt-1 max-w-2xl text-sm text-gray-500">
-                              {project.contributor}
-                            </p>
-                          </div>
-                          <div>
-                            <h3 className="text-lg leading-6 font-medium text-gray-900">
-                              Mentor
-                            </h3>
-                            <p className="mt-1 max-w-2xl text-sm text-gray-500">
-                              {project.mentor}
+                              {project.student_name}
                             </p>
                           </div>
                         </div>
                         <h4 className="text-lg leading-6 font-semibold text-gray-900">
-                          {project.projectTitle}
+                          {project.title}
                         </h4>
                         <p className="mt-2 text-sm text-gray-500">
-                          {project.projectDescription}
+                          {project.short_description}
                         </p>
                         <div className="flex mt-5 gap-2">
                           <Button
@@ -64,7 +52,7 @@ const ProjectsSection = ({projects}) => {
                           >
                             <Link
                               target="__blank"
-                              href={project.viewProjectDetailsURL}
+                              href={project.project_url}
                             >
                               View project details
                             </Link>
@@ -75,7 +63,7 @@ const ProjectsSection = ({projects}) => {
                           >
                             <Link
                               target="__blank"
-                              href={project.viewProjectCodeURL}
+                              href={project.code_url}
                             >
                               View code
                             </Link>
@@ -85,14 +73,13 @@ const ProjectsSection = ({projects}) => {
                     </TabsContent>
                   ))}
                 </div>
-              );
-            })}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-    </Tabs>
+        </section>
+      </Tabs>
     </div>
   );
-}
+};
 
-export default ProjectsSection
+export default ProjectsSection;
