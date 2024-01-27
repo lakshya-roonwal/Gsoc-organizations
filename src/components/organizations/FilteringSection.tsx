@@ -86,9 +86,9 @@ const FilteringSection = ({ organizations, setFilteredOrganizations }) => {
   useEffect(() => {
     let filtterOrgs;
     // Name
-    filtterOrgs = obj.filterByKeyAndMultiValues(organizations, "name", [
-      searchQuery.name,
-    ]);
+      filtterOrgs = obj.filterByKeyAndMultiValues(organizations, "name", [
+        searchQuery.name,
+      ]);
     // Technologies
     if (technologies.length > 0) {
       filtterOrgs = obj.filterByKeyAndMultiValues(

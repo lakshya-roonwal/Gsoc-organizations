@@ -12,7 +12,7 @@ import Link from "next/link";
 const OrgCard: FC<OrganizationCardType> = ({
   name,
   description,
-  imageUrl,
+  image_url,
   years,
   technologies,
   _id,
@@ -24,7 +24,7 @@ const OrgCard: FC<OrganizationCardType> = ({
         <img
           alt={description}
           className="h-24 object-contain max-w-full align-middle"
-          src={imageUrl}
+          src={image_url}
         />
       </CardHeader>
       <CardContent>

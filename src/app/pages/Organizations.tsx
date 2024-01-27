@@ -55,7 +55,7 @@ export default function Organizations({ fetchedOrganizations }) {
                     _id={organization._id}
                     name={organization.name}
                     description={organization.description}
-                    imageUrl={organization.imageUrl}
+                    image_url={organization.image_url}
                     years={organization.years}
                     technologies={organization.technologies}
                     topics={organization.topics}

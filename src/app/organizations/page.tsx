@@ -1,12 +1,14 @@
 import Organizations from "../pages/Organizations"
 
 async function getData() {
-  const res = await fetch("http://localhost:3000/api/getallorgs");
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
-
+  const res = await fetch("http://localhost:3000/api/getallorgs",{
+    method: "GET", 
+    cache: "no-cache", 
+    headers: {  
+      "Content-Type": "application/json",
+    },
+  });
   if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
     throw new Error("Failed to fetch data");
   }
 

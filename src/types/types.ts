@@ -2,7 +2,7 @@ export interface OrganizationCardType {
   name: string;
   _id:string;
   description: string;
-  imageUrl: string;
+  image_url: string;
   years: string[];
   technologies: string[];
   topics: string[];
