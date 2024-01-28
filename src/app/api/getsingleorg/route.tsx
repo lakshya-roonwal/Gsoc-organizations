@@ -16,6 +16,6 @@ export async function POST(request:NextRequest) {
     return NextResponse.json({ msg: `Your Id is ${id} `,org:singleOrg }, { status: 200 });
   } catch (error) {
     console.log(error);
-    return NextResponse.json({ msg: " Error" });
+    return NextResponse.json({ msg: "Error" });
   }
 }

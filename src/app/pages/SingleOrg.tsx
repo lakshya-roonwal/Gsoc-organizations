@@ -4,6 +4,7 @@ import { MailIcon, TextIcon } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FC } from "react";
 import Link from "next/link";
+import { redirect } from 'next/navigation'
 
 // Icons
 import {
@@ -95,7 +96,7 @@ const SingleOrg: FC<pageProps> = ({ orgData }) => {
 
   return (
     <div>
-      <div className="min-h-screen ">
+      {orgData?<div className="min-h-screen ">
         {/* Header Section With Org. Name */}
         <main className="px-4 py-20 bg-[#0079ff]">
           <div className="max-w-6xl mx-auto">
@@ -153,7 +154,7 @@ const SingleOrg: FC<pageProps> = ({ orgData }) => {
         <ProjectsSection 
         projects={orgData.projects}
          />
-      </div>
+      </div>:redirect('/404')}
     </div>
   );
 };

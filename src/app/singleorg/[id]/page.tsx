@@ -1,9 +1,9 @@
 import SingleOrg from "@/app/pages/SingleOrg"
-import { useRouter } from "next/router";
 
 async function getSingleOrgData(id:string) {
 const res = await fetch("http://localhost:3000/api/getsingleorg", {
     method: "POST",
+    cache:"no-store",
     headers: {
       "Content-Type": "application/json",
     },
@@ -13,8 +13,9 @@ const res = await fetch("http://localhost:3000/api/getsingleorg", {
   // You can return Date, Map, Set, etc.
 
   if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
+    // This will activate the closest `error.js` Error Boundary    
     throw new Error("Failed to fetch data");
+
   }
 
   return res.json();
