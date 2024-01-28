@@ -4,6 +4,7 @@ import { MailIcon, TextIcon } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FC } from "react";
 import Link from "next/link";
+import {SingleOrg} from '@/types/types'
 import { redirect } from 'next/navigation'
 
 // Icons
@@ -19,7 +20,9 @@ import {
 import ProjectsSection from "@/components/singleorg/ProjectsSection";
 import { Badge } from "@/components/ui/badge";
 
-interface pageProps {}
+interface pageProps {
+  orgData:SingleOrg;
+}
 
 const SingleOrg: FC<pageProps> = ({ orgData }) => {
   // Function That will render Icons acording to socials
@@ -96,7 +99,7 @@ const SingleOrg: FC<pageProps> = ({ orgData }) => {
 
   return (
     <div>
-      {orgData?<div className="min-h-screen ">
+    {orgData?<div className="min-h-screen ">
         {/* Header Section With Org. Name */}
         <main className="px-4 py-20 bg-[#0079ff]">
           <div className="max-w-6xl mx-auto">

@@ -1,25 +1,16 @@
 "use client";
-import {
-  SelectValue,
-  SelectTrigger,
-  SelectItem,
-  SelectContent,
-  Select,
-} from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
-import Link from "next/link";
-import OrgCard from "@/components/organizations/OrgCard";
-import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
-import { OrganizationCardType } from "@/types/types";
-import MultiSelect from "@/components/organizations/MultiSelect";
 import FilteringSection from "@/components/organizations/FilteringSection";
+import OrgCard from "@/components/organizations/OrgCard";
+import { OrganizationCardType } from "@/types/types";
+import { useState } from "react";
+import { FC } from 'react'
 
-export default function Organizations({ fetchedOrganizations }) {
-  const [organizations, setOrganizations] =
-    useState<OrganizationCardType[]>(fetchedOrganizations);
-  const [filteredOrganizations, setFilteredOrganizations] =
-    useState<OrganizationCardType[]>(organizations);
+
+
+
+const Organizations: FC<OrganizationCardType> = ({fetchedOrganizations}) => {
+  const [organizations, setOrganizations] = useState<OrganizationCardType[]>(fetchedOrganizations);
+  const [filteredOrganizations, setFilteredOrganizations] =   useState<OrganizationCardType[]>(organizations);
 
   return (
     <div className="min-h-screen bg-gray-100 ">
@@ -67,3 +58,5 @@ export default function Organizations({ fetchedOrganizations }) {
     </div>
   );
 }
+
+export default Organizations
