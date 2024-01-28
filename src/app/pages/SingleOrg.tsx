@@ -16,6 +16,7 @@ import {
   User,
 } from "lucide-react";
 import ProjectsSection from "@/components/singleorg/ProjectsSection";
+import { Badge } from "@/components/ui/badge";
 
 interface pageProps {}
 
@@ -108,27 +109,33 @@ const SingleOrg: FC<pageProps> = ({ orgData }) => {
             <div className="flex flex-col gap-8">
               <div>
                 <h3 className="font-semibold">Technologies</h3>
-                <p className="mt-2 text-sm">
+                <div className="flex flex-wrap gap-2">
                   {orgData.technologies.map((technology) => (
-                    <span>{technology}, </span>
+                    <Badge variant={"outline"}>
+                      {technology}
+                      </Badge>
                   ))}
-                </p>
+                </div>
               </div>
               <div>
                 <h3 className="font-semibold">Topics</h3>
-                <p className="mt-2 text-sm">
+                <div className="flex flex-wrap gap-2">
                   {orgData.topics.map((topic) => (
-                    <span>{topic}, </span>
+                    <Badge variant={"outline"}>
+                      {topic}
+                      </Badge>
                   ))}
-                </p>
+                </div>
               </div>
+              <div>
               <a
-                className="block mt-4 text-blue-600"
-                href={orgData.websiteURL}
+                className="mt-4 text-blue-600"
+                href={orgData.url}
                 target="__blank"
               >
-                {orgData.websiteURL}
+                {orgData.url}
               </a>
+              </div>
             </div>
 
             <div>
