@@ -35,7 +35,7 @@ const SingleOrg: FC<pageProps> = ({ orgData }) => {
         break;
       case "mailing_list":
         return         <Link className="font-medium text-blue-500 flex items-center gap-3"
-        href={"https://summerofcode.withgoogle.com/"+link}
+        href={link}
         target={"__blank"}
         >
         <MailboxIcon className="text-blue-500" />

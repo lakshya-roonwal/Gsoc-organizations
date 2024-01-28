@@ -22,8 +22,6 @@ const res = await fetch("http://localhost:3000/api/getsingleorg", {
 
 const page = async({ params }: { params: { id: string } }) => {
   const data = await getSingleOrgData(params.id);
-  console.log(data)
-
   return <SingleOrg orgData ={data.org}/>;
 };
 
