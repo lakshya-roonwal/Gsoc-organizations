@@ -12,6 +12,8 @@ import {
   Twitter,
   NewspaperIcon,
   MailboxIcon,
+  Lightbulb, 
+  User,
 } from "lucide-react";
 import ProjectsSection from "@/components/singleorg/ProjectsSection";
 
@@ -19,27 +21,72 @@ interface pageProps {}
 
 const SingleOrg: FC<pageProps> = ({ orgData }) => {
   // Function That will render Icons acording to socials
-  const getIcon = (key: string) => {
+  const getLink = (key: string,link:string) => {
     switch (key) {
-      case "Chat":
-        return <MessageCircleMore className="text-blue-500" />;
+      case "irc_channel":
+        return <Link className="font-medium text-blue-500 flex items-center gap-3"
+        href={link}
+        target={"__blank"}
+        >
+        <MessageCircleMore className="text-blue-500" />
+        Chat
+        </Link>
         break;
-      case "Mailing list / Forum":
-        return <MailboxIcon className="text-blue-500" />;
+      case "mailing_list":
+        return         <Link className="font-medium text-blue-500 flex items-center gap-3"
+        href={"https://summerofcode.withgoogle.com/"+link}
+        target={"__blank"}
+        >
+        <MailboxIcon className="text-blue-500" />
+        Mailing List / Forum
+        </Link>
         break;
-      case "Email":
-        return <Mail className="text-blue-500" />;
+      case "contact_email":
+        return <Link className="font-medium text-blue-500 flex items-center gap-3"
+        href={link}
+        target={"__blank"}
+        >
+        <Mail className="text-blue-500" />
+        Email
+        </Link>
         break;
-      case "Twitter":
-        return <Twitter className="text-blue-500" />;
+      case "twitter_url":
+        return <Link className="font-medium text-blue-500 flex items-center gap-3"
+        href={link}
+        target={"__blank"}
+        >
+        <Twitter className="text-blue-500" />
+        Twitter
+        </Link>
         break;
-      case "Blog":
-        return <NewspaperIcon className="text-blue-500" />;
+      case "blog_url":
+        return <Link className="font-medium text-blue-500 flex items-center gap-3"
+        href={link}
+        target={"__blank"}
+        >
+        <NewspaperIcon className="text-blue-500" />
+        Blog
+        </Link>
         break;
-      case "IRC":
-        return <MessageCircleMore className="text-blue-500" />;
+      case "ideas_url":
+        return <Link className="font-medium text-blue-500 flex items-center gap-3"
+        href={link}
+        target={"__blank"}
+        >
+        <Lightbulb className="text-blue-500" />
+        Idea's List
+        </Link>
         break;
-
+      case "guide_url":
+        return <Link className="font-medium text-blue-500 flex items-center gap-3"
+        href={link}
+        target={"__blank"}
+        >
+        <User className="text-blue-500" />
+        {key}
+        </Link>
+        break;
+  
       default:
         break;
     }
@@ -88,16 +135,9 @@ const SingleOrg: FC<pageProps> = ({ orgData }) => {
               {/* Socials */}
               <div className="flex flex-col w-full gap-2 p-4 px-8 rounded-md shadow-md bg-white min-w-[20rem]">
                 {Object.keys(orgData.socials).map((key) => (
-                  <div key={key} className="flex items-center gap-3">
-                    <div>{getIcon(key)}</div>
-                    <Link
-                      className="font-medium text-blue-500"
-                      href={orgData.socials[key]}
-                      target="__blank"
-                    >
-                      {key}
-                    </Link>
-                  </div>
+                  orgData.socials[key].length>0?<div key={key} className="">
+                    {getLink(key,orgData.socials[key])}
+                  </div>:null
                 ))}
               </div>
             </div>
