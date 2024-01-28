@@ -6,4 +6,5 @@ export interface OrganizationCardType {
   years: string[];
   technologies: string[];
   topics: string[];
+  category:string;
 }

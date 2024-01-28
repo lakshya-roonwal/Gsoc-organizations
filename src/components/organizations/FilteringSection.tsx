@@ -4,6 +4,7 @@ import { FilterDataAdvanced } from "filter-data-advanced/dist/FilterDataAdvanced
 import { X } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { Badge } from "../ui/badge";
+import { Button } from "../ui/button";
 // import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
 // import { Button } from "../ui/button";
 
@@ -13,6 +14,7 @@ const FilteringSection = ({ organizations, setFilteredOrganizations }) => {
     years: [],
     technologies: [],
     topics: [],
+    category: "All",
   });
   const yearsList = [
     "2016",
@@ -57,6 +59,21 @@ const FilteringSection = ({ organizations, setFilteredOrganizations }) => {
     " social",
     " messaging",
   ];
+  const categoryList = [
+    "All",
+    "Data",
+    "Development tools",
+    "End user applications",
+    "Infrastructure and cloud",
+    "Media",
+    "Operating systems",
+    "Programming languages",
+    "Science and medicine",
+    "Security",
+    "Social and communication",
+    "Web",
+    "Other",
+  ];
 
   const [years, setYears] = useState([]);
   const [technologies, setTechnologies] = useState([]);
@@ -71,6 +88,12 @@ const FilteringSection = ({ organizations, setFilteredOrganizations }) => {
   const handleUnselect = useCallback((selectList: selectList) => {
     setSelected((prev) => prev.filter((s) => s !== selectList));
   }, []);
+  const handleCategoryChange = (category:string) => {
+    setSearchQuery({
+      ...searchQuery,
+      ['category']: category,
+    });
+  };
 
   let obj = new FilterDataAdvanced();
 
@@ -86,9 +109,19 @@ const FilteringSection = ({ organizations, setFilteredOrganizations }) => {
   useEffect(() => {
     let filtterOrgs;
     // Name
-      filtterOrgs = obj.filterByKeyAndMultiValues(organizations, "name", [
-        searchQuery.name,
-      ]);
+    filtterOrgs = obj.filterByKeyAndMultiValues(organizations, "name", [
+      searchQuery.name,
+    ]);
+
+    // Category
+    if (searchQuery.category!=="All") {
+      filtterOrgs = obj.filterByKeyValue(
+        filtterOrgs,
+        "category",
+        searchQuery.category
+      );
+    }
+
     // Technologies
     if (technologies.length > 0) {
       filtterOrgs = obj.filterByKeyAndMultiValues(
@@ -121,6 +154,21 @@ const FilteringSection = ({ organizations, setFilteredOrganizations }) => {
 
   return (
     <div className="flex flex-col gap-4 justify-between items-center mb-6">
+      <div className="w-full flex-wrap gap-y-4 p-4 flex space-x-2 overflow-auto">
+        {categoryList.map((category:string)=>{
+            return (
+              <button
+              key={category}
+              className={`rounded-full px-4 py-1 ${
+                searchQuery.category === category ? 'bg-blue-500 text-white' : 'text-gray-700 bg-white hover:bg-gray-200'
+              }`}
+              onClick={() => handleCategoryChange(category)}
+            >
+              {category}
+            </button>
+            )
+        })}
+      </div>
       <div className="flex w-full justify-between">
         <Input
           className="border p-2 rounded-md md:w-1/3"
@@ -135,64 +183,74 @@ const FilteringSection = ({ organizations, setFilteredOrganizations }) => {
 
       {/* Filtering Lists */}
       <div className="flex  flex-col justify-start w-full gap-4">
-        {years.length>0?<div className="years">
-          <div>
-            <h3 className="mb-2 font-semibold text-lg text-gray-700">Years</h3>
+        {years.length > 0 ? (
+          <div className="years">
+            <div>
+              <h3 className="mb-2 font-semibold text-lg text-gray-700">
+                Years
+              </h3>
+            </div>
+            {years.map((selectList) => (
+              <Badge key={selectList} variant="secondary">
+                {selectList}
+                <button
+                  className="ml-1 ring-offset-background rounded-full outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                  onClick={() => {
+                    setYears((prev) => prev.filter((s) => s !== selectList));
+                  }}
+                >
+                  <X className="h-3 w-3 text-muted-foreground hover:text-foreground" />
+                </button>
+              </Badge>
+            ))}
           </div>
-          {years.map((selectList) => (
-            <Badge key={selectList} variant="secondary">
-              {selectList}
-              <button
-                className="ml-1 ring-offset-background rounded-full outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
-                onClick={() => {
-                  setYears((prev) => prev.filter((s) => s !== selectList));
-                }}
-              >
-                <X className="h-3 w-3 text-muted-foreground hover:text-foreground" />
-              </button>
-            </Badge>
-          ))}
-        </div>:null}
-        {technologies.length>0?<div className="technologies">
-          <div>
-            <h3 className="mb-2 font-semibold text-lg text-gray-700">
-              Technologies
-            </h3>
+        ) : null}
+        {technologies.length > 0 ? (
+          <div className="technologies">
+            <div>
+              <h3 className="mb-2 font-semibold text-lg text-gray-700">
+                Technologies
+              </h3>
+            </div>
+            {technologies.map((selectList) => (
+              <Badge key={selectList} variant="secondary">
+                {selectList}
+                <button
+                  className="ml-1 ring-offset-background rounded-full outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                  onClick={() => {
+                    setTechnologies((prev) =>
+                      prev.filter((s) => s !== selectList)
+                    );
+                  }}
+                >
+                  <X className="h-3 w-3 text-muted-foreground hover:text-foreground" />
+                </button>
+              </Badge>
+            ))}
           </div>
-          {technologies.map((selectList) => (
-            <Badge key={selectList} variant="secondary">
-              {selectList}
-              <button
-                className="ml-1 ring-offset-background rounded-full outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
-                onClick={() => {
-                  setTechnologies((prev) =>
-                    prev.filter((s) => s !== selectList)
-                  );
-                }}
-              >
-                <X className="h-3 w-3 text-muted-foreground hover:text-foreground" />
-              </button>
-            </Badge>
-          ))}
-        </div>:null}
-        {topics.length>0?<div className="topics">
-          <div>
-            <h3 className="mb-2 font-semibold text-lg text-gray-700">Topics</h3>
+        ) : null}
+        {topics.length > 0 ? (
+          <div className="topics">
+            <div>
+              <h3 className="mb-2 font-semibold text-lg text-gray-700">
+                Topics
+              </h3>
+            </div>
+            {topics.map((selectList) => (
+              <Badge key={selectList} variant="secondary">
+                {selectList}
+                <button
+                  className="ml-1 ring-offset-background rounded-full outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                  onClick={() => {
+                    setTopics((prev) => prev.filter((s) => s !== selectList));
+                  }}
+                >
+                  <X className="h-3 w-3 text-muted-foreground hover:text-foreground" />
+                </button>
+              </Badge>
+            ))}
           </div>
-          {topics.map((selectList) => (
-            <Badge key={selectList} variant="secondary">
-              {selectList}
-              <button
-                className="ml-1 ring-offset-background rounded-full outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
-                onClick={() => {
-                  setTopics((prev) => prev.filter((s) => s !== selectList));
-                }}
-              >
-                <X className="h-3 w-3 text-muted-foreground hover:text-foreground" />
-              </button>
-            </Badge>
-          ))}
-        </div>:null}
+        ) : null}
       </div>
       <div className="flex items-center justify-between flex-col md:flex-row md:gap-8 w-full space-x-2">
         <MultiSelect

@@ -17,6 +17,7 @@ const OrgCard: FC<OrganizationCardType> = ({
   technologies,
   _id,
   topics,
+  category,
 }: OrganizationCardType) => {
   return (
     <Card className="w-full shadow-sm">
@@ -28,6 +29,9 @@ const OrgCard: FC<OrganizationCardType> = ({
         />
       </CardHeader>
       <CardContent>
+        <div className="category w-full flex justify-center">
+        <Badge variant={"outline"}>{category}</Badge>
+        </div>
         <h2 className="text-xl font-semibold">{name}</h2>
         <p className="mt-2 text-gray-600">{description}</p>
         <div className="mt-4">

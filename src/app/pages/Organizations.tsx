@@ -59,6 +59,7 @@ export default function Organizations({ fetchedOrganizations }) {
                     years={organization.years}
                     technologies={organization.technologies}
                     topics={organization.topics}
+                    category={organization.category}
                   />
                 </>
               );
