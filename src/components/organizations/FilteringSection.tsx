@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { FilterDataAdvanced } from "filter-data-advanced/dist/FilterDataAdvanced";
 import { X } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
+import {topcisList,technologiesList} from '@/app/constants/filteringConstants'
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 // import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
@@ -25,39 +26,6 @@ const FilteringSection = ({ organizations, setFilteredOrganizations }) => {
     "2021",
     "2022",
     "2023",
-  ];
-  const technologiesList = [
-    " swift",
-    " Objective C",
-    " python 3",
-    " lua",
-    "java",
-    " vala",
-    " xmpp",
-    " java",
-    " webrtc",
-    " c++",
-    " erlang",
-    " dart",
-    " asynchronous i/o",
-    "vala",
-    "javascript",
-  ];
-  const topcisList = [
-    " chat",
-    " realtime communications",
-    " WebRTC",
-    " internet of things",
-    "instant messaging",
-    " Jingle",
-    " Real-Time Communication",
-    " realtime communication",
-    " xmpp",
-    " machine-to-machine",
-    " communications",
-    " voip",
-    " social",
-    " messaging",
   ];
   const categoryList = [
     "All",
