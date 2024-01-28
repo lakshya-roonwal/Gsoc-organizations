@@ -38,7 +38,7 @@ const OrgCard: FC<OrganizationCardType> = ({
           <h3 className="font-semibold">Technologies</h3>
           <div className="mt-1 flex flex-wrap gap-2">
             {technologies.map((technology) => {
-              return <Badge>{technology}</Badge>;
+              return <Badge key={technology}>{technology}</Badge>;
             })}
           </div>
         </div>
@@ -46,7 +46,7 @@ const OrgCard: FC<OrganizationCardType> = ({
           <h3 className="font-semibold">Years</h3>
           <div className="mt-1 flex flex-wrap gap-2">
             {years.map((year) => {
-              return <Badge>{year}</Badge>;
+              return <Badge key={year}>{year}</Badge>;
             })}
           </div>
         </div>

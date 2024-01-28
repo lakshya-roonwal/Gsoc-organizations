@@ -75,7 +75,7 @@ const SingleOrg: FC<pageProps> = ({ orgData }) => {
         target={"__blank"}
         >
         <Lightbulb className="text-blue-500" />
-        Idea's List
+        Ideas List
         </Link>
         break;
       case "guide_url":
@@ -111,7 +111,7 @@ const SingleOrg: FC<pageProps> = ({ orgData }) => {
                 <h3 className="font-semibold">Technologies</h3>
                 <div className="flex flex-wrap gap-2">
                   {orgData.technologies.map((technology) => (
-                    <Badge variant={"outline"}>
+                    <Badge variant={"outline"} key={technology}>
                       {technology}
                       </Badge>
                   ))}
@@ -121,7 +121,7 @@ const SingleOrg: FC<pageProps> = ({ orgData }) => {
                 <h3 className="font-semibold">Topics</h3>
                 <div className="flex flex-wrap gap-2">
                   {orgData.topics.map((topic) => (
-                    <Badge variant={"outline"}>
+                    <Badge variant={"outline"} key={topic}>
                       {topic}
                       </Badge>
                   ))}

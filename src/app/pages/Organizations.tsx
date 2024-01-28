@@ -9,7 +9,6 @@ import {
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import OrgCard from "@/components/organizations/OrgCard";
-import OrgData from "@/data/homepageorganizations.json";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { OrganizationCardType } from "@/types/types";
@@ -49,7 +48,6 @@ export default function Organizations({ fetchedOrganizations }) {
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
             {filteredOrganizations.map((organization) => {
               return (
-                <>
                   <OrgCard
                     key={organization._id}
                     _id={organization._id}
@@ -61,7 +59,6 @@ export default function Organizations({ fetchedOrganizations }) {
                     topics={organization.topics}
                     category={organization.category}
                   />
-                </>
               );
             })}
           </div>

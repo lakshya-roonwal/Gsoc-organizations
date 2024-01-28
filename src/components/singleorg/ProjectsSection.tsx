@@ -5,12 +5,6 @@ import Link from "next/link";
 
 const ProjectsSection = ({ projects }) => {
   const projectsData = Object.entries(projects)[0][1];
-  Object.keys(projectsData)
-    .slice(0, -2)
-    .map((year) => {
-      console.log("The is Year ", year);
-      console.log("This is Data", projectsData[year]["projects"]);
-    });
   return (
     <div>
       <Tabs defaultValue={Object.keys(projectsData).slice(0, -2)[0]}>
@@ -38,7 +32,7 @@ const ProjectsSection = ({ projects }) => {
                     <div key={year}>
                     {projectsData[year]["projects"].map((project) => {
                     return (
-                      <TabsContent value={year}>
+                      <TabsContent value={year} key={project.title}>
                         <div className="bg-white shadow rounded-lg p-6">
                           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                             <div>
