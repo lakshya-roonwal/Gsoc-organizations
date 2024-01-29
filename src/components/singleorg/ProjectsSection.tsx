@@ -1,10 +1,16 @@
-import React from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Link from "next/link";
 
-const ProjectsSection = ({ projects }) => {
-  const projectsData = Object.entries(projects)[0][1];
+
+import { FC } from 'react';
+
+interface ProjectsSectionProps {
+  projects: any;
+}
+
+const ProjectsSection: FC<ProjectsSectionProps> = ({ projects }) => {
+  const projectsData:any = Object.entries(projects)[0][1];
   return (
     <div>
       <Tabs defaultValue={Object.keys(projectsData).slice(0, -2)[0]}>
@@ -30,7 +36,7 @@ const ProjectsSection = ({ projects }) => {
                 .map((year) => {
                   return (
                     <div key={year}>
-                    {projectsData[year]["projects"].map((project) => {
+                    {projectsData[year]["projects"].map((project:any) => {
                     return (
                       <TabsContent value={year} key={project.title}>
                         <div className="bg-white shadow rounded-lg p-6">

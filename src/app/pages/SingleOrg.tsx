@@ -1,24 +1,21 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { MailIcon, TextIcon } from "lucide-react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { FC } from "react";
+import { SingleOrg } from '@/types/types';
 import Link from "next/link";
-import {SingleOrg} from '@/types/types'
-import { redirect } from 'next/navigation'
+import { redirect } from 'next/navigation';
+import { FC } from "react";
 
 // Icons
-import {
-  MessageCircleMore,
-  Mail,
-  Twitter,
-  NewspaperIcon,
-  MailboxIcon,
-  Lightbulb, 
-  User,
-} from "lucide-react";
 import ProjectsSection from "@/components/singleorg/ProjectsSection";
 import { Badge } from "@/components/ui/badge";
+import {
+  Lightbulb,
+  Mail,
+  MailboxIcon,
+  MessageCircleMore,
+  NewspaperIcon,
+  Twitter,
+  User,
+} from "lucide-react";
 
 interface pageProps {
   orgData:SingleOrg;

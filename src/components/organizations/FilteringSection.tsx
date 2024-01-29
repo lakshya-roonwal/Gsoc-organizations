@@ -1,15 +1,19 @@
+import { technologiesList, topcisList } from '@/app/constants/filteringConstants';
 import MultiSelect from "@/components/organizations/MultiSelect";
 import { Input } from "@/components/ui/input";
 import { FilterDataAdvanced } from "filter-data-advanced/dist/FilterDataAdvanced";
 import { X } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
-import {topcisList,technologiesList} from '@/app/constants/filteringConstants'
+import { FC, useEffect, useState } from "react";
 import { Badge } from "../ui/badge";
-import { Button } from "../ui/button";
-// import { ToggleGroup, ToggleGroupItem } from "../ui/toggle-group";
-// import { Button } from "../ui/button";
 
-const FilteringSection = ({ organizations, setFilteredOrganizations }) => {
+interface FilteringSectionProps {
+  // Have to fix them later
+  organizations: any;
+  setFilteredOrganizations: any;
+}
+
+const FilteringSection: FC<FilteringSectionProps> = ({ organizations, setFilteredOrganizations }) => {
+
   const [searchQuery, setSearchQuery] = useState({
     name: "",
     years: [],
@@ -53,9 +57,6 @@ const FilteringSection = ({ organizations, setFilteredOrganizations }) => {
       [name]: value,
     });
   };
-  const handleUnselect = useCallback((selectList: selectList) => {
-    setSelected((prev) => prev.filter((s) => s !== selectList));
-  }, []);
   const handleCategoryChange = (category:string) => {
     setSearchQuery({
       ...searchQuery,
@@ -225,21 +226,18 @@ const FilteringSection = ({ organizations, setFilteredOrganizations }) => {
           selectList={yearsList}
           selected={years}
           setSelected={setYears}
-          handleUnselect={handleUnselect}
           placeholder="Select Years"
         />
         <MultiSelect
           selectList={technologiesList}
           selected={technologies}
           setSelected={setTechnologies}
-          handleUnselect={handleUnselect}
           placeholder="Select Technologies"
         />
         <MultiSelect
           selectList={topcisList}
           selected={topics}
           setSelected={setTopics}
-          handleUnselect={handleUnselect}
           placeholder="Select Topics"
         />
       </div>

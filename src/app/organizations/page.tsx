@@ -1,7 +1,7 @@
-import Organizations from "../pages/Organizations"
+import Organizations from "../pages/Organizations";
 
 async function getData() {
-  const res = await fetch("http://localhost:3000/api/getallorgs",{
+  const res = await fetch(process.env.NEXT_PUBLIC_API_URL+"/api/getallorgs",{
     method: "GET", 
     cache: "no-cache", 
     headers: {  

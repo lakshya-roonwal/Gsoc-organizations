@@ -25,11 +25,11 @@ interface Projects {
 export interface SingleOrg {
   name: string;
   description: string;
-  imageUrl: string;
+  image_url: string;
+  url:string;
   years: string[];
   technologies: string[];
   topics: string[];
-  socials: Record<string, unknown>;
-  websiteURL: string;
+  socials: any;
   projects: Projects[];
 }

@@ -1,4 +1,4 @@
-import SingleOrg from "@/app/pages/SingleOrg"
+import SingleOrg from "@/app/pages/SingleOrg";
 
 async function getSingleOrgData(id:string) {
 const res = await fetch("http://localhost:3000/api/getsingleorg", {

@@ -2,15 +2,14 @@
 import FilteringSection from "@/components/organizations/FilteringSection";
 import OrgCard from "@/components/organizations/OrgCard";
 import { OrganizationCardType } from "@/types/types";
-import { useState } from "react";
-import { FC } from 'react'
+import { FC, useState } from "react";
+interface OrganizationsProps {
+  fetchedOrganizations: OrganizationCardType[];
+}
 
-
-
-
-const Organizations: FC<OrganizationCardType> = ({fetchedOrganizations}) => {
+const Organizations: FC<OrganizationsProps> = ({ fetchedOrganizations }) => {
   const [organizations, setOrganizations] = useState<OrganizationCardType[]>(fetchedOrganizations);
-  const [filteredOrganizations, setFilteredOrganizations] =   useState<OrganizationCardType[]>(organizations);
+  const [filteredOrganizations, setFilteredOrganizations] = useState<OrganizationCardType[]>(organizations);
 
   return (
     <div className="min-h-screen bg-gray-100 ">

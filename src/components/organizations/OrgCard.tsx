@@ -1,13 +1,13 @@
-import { FC } from "react";
-import { OrganizationCardType } from "@/types/types";
+import { Badge } from "@/components/ui/badge";
 import {
-  CardHeader,
+  Card,
   CardContent,
   CardFooter,
-  Card,
+  CardHeader,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { OrganizationCardType } from "@/types/types";
 import Link from "next/link";
+import { FC } from "react";
 
 const OrgCard: FC<OrganizationCardType> = ({
   name,
