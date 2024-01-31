@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
     
   } catch (error) {
     console.log(error);
-    return NextResponse.json({ msg: " Error" });
+    return NextResponse.json({ msg: `${error}` });
   }
 }
 
