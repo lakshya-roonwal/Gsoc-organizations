@@ -1,4 +1,4 @@
-import SingleOrg from "@/app/pages/SingleOrg";
+import SingleOrg from "@/app/AppPages/SingleOrg";
 
 async function getSingleOrgData(id:string) {
 const res = await fetch("http://localhost:3000/api/getsingleorg", {
@@ -21,9 +21,7 @@ const res = await fetch("http://localhost:3000/api/getsingleorg", {
   return res.json();
 }
 
-const page = async({ params }: { params: { id: string } }) => {
+export default async function AllOrganizations({ params }: { params: { id: string } }) {
   const data = await getSingleOrgData(params.id);
   return <SingleOrg orgData ={data.org}/>;
 };
-
-export default page

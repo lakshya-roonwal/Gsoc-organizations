@@ -1,9 +1,9 @@
-import Organizations from "../pages/Organizations";
+import Organizations from "../AppPages/Organizations";
 
 async function getData() {
   const res = await fetch(process.env.NEXT_PUBLIC_API_URL+"/api/getallorgs",{
     method: "GET", 
-    cache: "no-cache", 
+    cache: "no-store", 
     headers: {  
       "Content-Type": "application/json",
     },
@@ -11,15 +11,12 @@ async function getData() {
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
-
   return res.json();
 }
 
-const OrganizationsHomePage = async() => {
+export default async function AllOrganizations() {
   const data = await getData();
   return (
     <Organizations fetchedOrganizations={data.orgs}/>    
   )
 }
-
-export default OrganizationsHomePage
