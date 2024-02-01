@@ -1,7 +1,10 @@
 import SingleOrg from "@/app/AppPages/SingleOrg";
 
+
+const url = process.env.NEXT_PUBLIC_API_URL
+
 async function getSingleOrgData(id:string) {
-const res = await fetch("http://localhost:3000/api/getsingleorg", {
+const res = await fetch(url+"/api/getsingleorg", {
     method: "POST",
     cache:"no-store",
     headers: {
