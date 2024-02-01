@@ -41,6 +41,6 @@ export default async function GetSingleOrg({ params }: { params: { id: string } 
   } catch (error) {
     // Handle errors by displaying an error message or redirecting
     console.error("Error fetching data",error);
-    return <div>Error fetching data {singleorgUrl}</div>;
+    return <div>Error fetching data</div>;
   }
 }
