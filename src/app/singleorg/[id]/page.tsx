@@ -1,30 +1,46 @@
 import SingleOrg from "@/app/AppPages/SingleOrg";
 
+const url = process.env.NEXT_PUBLIC_API_URL;
 
-const url = process.env.NEXT_PUBLIC_API_URL
-
-async function getSingleOrgData(id:string) {
-const res = await fetch(url+"/api/getsingleorg", {
+async function getSingleOrgData(id: string) {
+  const res = await fetch(url + "/api/getsingleorg", {
     method: "POST",
-    cache:"no-store",
+    cache: "no-store",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ id: id }),
   });
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
 
+  // Check if the response is okay
   if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary    
+    // This will activate the closest `error.js` Error Boundary
     throw new Error("Failed to fetch data");
-
   }
 
-  return res.json();
+  try {
+    // Try parsing the JSON response
+    return await res.json();
+  } catch (error) {
+    // Handle parsing errors
+    throw new Error("Failed to parse JSON response");
+  }
 }
 
-export default async function AllOrganizations({ params }: { params: { id: string } }) {
-  const data = await getSingleOrgData(params.id);
-  return <SingleOrg orgData ={data.org}/>;
-};
+export default async function GetSingleOrg({ params }: { params: { id: string } }) {
+  try {
+    // Fetch data inside a try-catch block for error handling
+    const data = await getSingleOrgData(params.id);
+    
+    // Verify the data structure before passing it to the component
+    if (data && data.org) {
+      return <SingleOrg orgData={data.org} />;
+    } else {
+      throw new Error("Invalid data structure");
+    }
+  } catch (error) {
+    // Handle errors by displaying an error message or redirecting
+    console.error("Error fetching data");
+    return <div>Error fetching data</div>;
+  }
+}
