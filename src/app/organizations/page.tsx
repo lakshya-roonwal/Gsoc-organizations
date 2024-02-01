@@ -1,6 +1,6 @@
 import Organizations from "../AppPages/Organizations";
 
-const url = `http://${process.env.NEXT_PUBLIC_URL}`
+const url = process.env.NEXT_PUBLIC_URL
 
 async function getData() {
   const res = await fetch(url+"/api/getallorgs",{
