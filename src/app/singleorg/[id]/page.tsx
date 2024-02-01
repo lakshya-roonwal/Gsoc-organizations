@@ -1,9 +1,9 @@
 import SingleOrg from "@/app/AppPages/SingleOrg";
 
-const url = process.env.NEXT_PUBLIC_API_URL;
+const singleorgUrl = process.env.NEXT_PUBLIC_API_URL+"/api/getsingleorg";
 
 async function getSingleOrgData(id: string) {
-  const res = await fetch(url + "/api/getsingleorg", {
+  const res = await fetch(singleorgUrl, {
     method: "POST",
     cache: "no-store",
     headers: {
@@ -40,7 +40,7 @@ export default async function GetSingleOrg({ params }: { params: { id: string } 
     }
   } catch (error) {
     // Handle errors by displaying an error message or redirecting
-    console.error("Error fetching data");
-    return <div>Error fetching data</div>;
+    console.error("Error fetching data",error);
+    return <div>Error fetching data {singleorgUrl}</div>;
   }
 }
