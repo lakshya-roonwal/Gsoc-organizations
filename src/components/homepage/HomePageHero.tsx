@@ -39,7 +39,7 @@ const HomePageHero = () => {
           </Link>
         </Button>
         <div className="absolute bottom-0 mb-4 flex flex-col items-center">
-          <p>My by <Link target="__blank" href={'https://twitter.com/Lakshya_roonwal'} className="text-blue-500 hover:text-blue-700">@Lakshya_roonwal</Link></p>
+          <p>By <Link target="__blank" href={'https://twitter.com/Lakshya_roonwal'} className="text-blue-500 hover:text-blue-700">@Lakshya_roonwal</Link></p>
           <Link target="__blank" href={'https://github.com/lakshya-roonwal'}>
           <LucideGithub />
           </Link>
