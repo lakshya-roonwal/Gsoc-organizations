@@ -31,7 +31,7 @@ const OrgCard: FC<OrganizationCardType> = ({
       </CardHeader>
       <CardContent>
         <div className="category w-full flex justify-center">
-        <Badge variant={"default"}>{category}</Badge>
+        <Badge variant={"outline"}>{category}</Badge>
         </div>
         <h2 className="text-xl font-bold">{name}</h2>
         <p className="mt-2 text-gray-600">{description}</p>
